@@ -8,6 +8,11 @@
 public class EmployeesController : ControllerBase
 {
     private readonly ILogger<EmployeesController> _logger;
+
+    /// <summary>
+    /// Constructor for EmployeesController.
+    /// </summary>
+    /// <param name="logger"></param>
     public EmployeesController(ILogger<EmployeesController> logger)
     {
         _logger = logger;
@@ -15,8 +20,8 @@ public class EmployeesController : ControllerBase
 
     private static readonly List<Employee> _employees = new List<Employee>()
     {
-        new Employee { Id = 1, Name = "John Doe", Position = "Engineer" },
-        new Employee { Id = 2, Name = "Jane Smith", Position = "Developer" }
+        new Employee { Id = 1, Name = "John Doe", Position = "Engineer", City = "New York" },
+        new Employee { Id = 2, Name = "Jane Smith", Position = "Developer", City = "Seattle" }
     };
 
     /// <summary>
@@ -98,6 +103,7 @@ public class EmployeesController : ControllerBase
         _logger.LogInformation($"Updating employee with id {id}.");
         existingEmployee.Name = employee.Name;
         existingEmployee.Position = employee.Position;
+        existingEmployee.City = employee.City;
 
         return NoContent();
     }
@@ -150,6 +156,9 @@ public class EmployeesController : ControllerBase
 
         if (!string.IsNullOrEmpty(patchDto.Position))
             existingEmployee.Position = patchDto.Position;
+
+        if (!string.IsNullOrEmpty(patchDto.City))
+            existingEmployee.City = patchDto.City;
 
         return NoContent();
     }

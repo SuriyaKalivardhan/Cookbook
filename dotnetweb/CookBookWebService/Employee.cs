@@ -17,6 +17,11 @@ public class Employee
     /// Job position of the employee.
     /// </summary>
     public string Position { get; set; }
+
+    /// <summary>
+    /// City where the employee is located.
+    /// </summary>
+    public string City { get; set; }
 }
 
 /// <summary>
@@ -33,4 +38,10 @@ public class EmployeePatchDto
     /// Employee position. Optional for patching.
     /// </summary>
     public string Position { get; set; }
+
+
+    /// <summary>
+    /// City where the employee is located. Optional for patching.
+    /// </summary>
+    public string City { get; set; }
 }
