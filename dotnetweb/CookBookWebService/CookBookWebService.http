@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:6000
+@baseUrl = http://localhost:5000
 
 ### Get All Employees
 GET {{baseUrl}}/api/employees
