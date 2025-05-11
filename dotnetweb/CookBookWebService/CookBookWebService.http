@@ -1,6 +1,67 @@
-@CookBookWebService_HostAddress = http://localhost:5113
+@baseUrl = http://localhost:6000
 
-GET {{CookBookWebService_HostAddress}}/weatherforecast/
+### Get All Employees
+GET {{baseUrl}}/api/employees
 Accept: application/json
 
-###
+### Get Employee By Id
+GET {{baseUrl}}/api/employees/1
+Accept: application/json
+
+### Employee NotFound example
+GET {{baseUrl}}/api/employees/9999
+Accept: application/json
+
+### Create New Employee
+POST {{baseUrl}}/api/employees
+Content-Type: application/json
+
+{
+    "id": 3,
+    "name": "Alice Johnson",
+    "position": "Product Owner"
+}
+
+### Create Employee Conflict Example (Existing ID)
+POST {{baseUrl}}/api/employees
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "Duplicate Employee",
+    "position": "Engineer"
+}
+
+### Update Existing Employee (put)
+PUT {{baseUrl}}/api/employees/1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "John Doe Updated",
+    "position": "Lead Engineer"
+}
+
+### Update Non-existing Employee (put failure)
+PUT {{baseUrl}}/api/employees/9999
+Content-Type: application/json
+
+{
+    "id": 9999,
+    "name": "Not Found",
+    "position": "Unknown"
+}
+
+### Partially Update Employee (patch)
+PATCH {{baseUrl}}/api/employees/1
+Content-Type: application/json
+
+{
+    "position": "Principal Engineer"
+}
+
+### Delete Employee
+DELETE {{baseUrl}}/api/employees/1
+
+### Delete Non-existing Employee (NotFound example)
+DELETE {{baseUrl}}/api/employees/9999
